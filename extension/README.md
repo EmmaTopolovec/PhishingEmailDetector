@@ -1,0 +1,1 @@
+Simple Chrome Extension to read a Gmail email.
