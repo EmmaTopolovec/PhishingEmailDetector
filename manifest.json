@@ -1,0 +1,19 @@
+{
+  "name": "OAuth Tutorial FriendBlock",
+  "version": "1.0",
+  "description": "testing out the oauth.",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "FriendBlock, friends face's in a block."
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "default_popup": "index.html"
+  },
+  "key": "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDUZcrNrL3HSOXWif3Avz9jBqzpayPK37042qbySWfr2Gj747AaILgp5sB66rCmvWQn1X6g9kNwsacbgCDJOVjMD6ihVT/sGJz4eoDuXD+6sAtloYdAHdZHpLTvuCIgtfrV3FQL1/QOHGoef+Pr55k3Z77irZknRhy6ilKT3IB3/vWQ6mhzvaN2zjH6JNciRy8EVLX2fnfhWKW7VKBZy4Q9EflbGyR/O1No8+KxqdvUm3g2pUKuenE3GzfDYRmXNahPBWtOBTnQsmRAZLMWn6LUpA5qP9vRH4wR9fccupbop/cnLcKdKUxbXXN6TEvO+9bbBCujzTrdWhDCThI67jYzAgMBAAECggEAQpwdyvzWk44IDo0+GFmh/mNUjOt90Rzz0cW4v5lHzw4SdpSEYN1MBFAKo0HA3rnclCV/TemNYuVD+/rlzVV/xJdQkjATGO7rI33/u0EQ93JIULokmXYCAnvkBp3fjhSkMrejYAd80YQVv7Tp/MyoH1kY4ywAMPHrBpFkrlxjqb2oMXwCoMS3lvgvUEPHH33R8mA84Myjz7dbMXfnJxfOYi6wWHc+Ghk1YY1h6gR6FVxGMaCaBZBLz630lrraQBlFH5ZymRt8G93J6Nk/ndXTsGXhL0RmtDW/t/vAOvhPixLYnBqhqT8t3dNid4ioef0O7b1UXUKJzO7LYAfmIeJoOQKBgQD3OrUD6QQol9JtnzHItfvp5sywLAi7SzR69zAS1wDBScUQj9TNEaoOv0N189jKRwZH/WoYnuRUxwytKyaE5/xNdZ0RGxg9vhk1D6MKC88weRl0N8V5bGvQH0uTpd8yuAVLgwL1nNOsZsLFSnG9E1GXICrIbNdduiWeunUaETae5wKBgQDb7r/yjQynbbo8DEqKJ1P7wwoBkWTzjHLgCOWB2j5LM86djD36C0n0M9/jI7LZmsGfgM21dkECfjWS6z1rwYb85f49oZ4c83kdK/WIOH7xc6X8JW4EK+x+yCLk0bbAx7eP/Y7cDJfADbL6R3r/f39wqHLzjinNjLioZssN8CQA1QKBgEy9vWicUP0ku13pt3NdAfhF+y2ITaGNo5mz1wlSEdrtwiz06JJLNGVle1RGv/lx+IIqKF/CGpAyRT4PkeJZfFiy9HFV3r1zn7F3zB0XM1YRkRQhJ7wcKo8s17HaICFHO+WHokiJSK9QKo9BH3MYZxApHP6fwm5GlNzjdewEgdbrAoGBAKHfe8+eGS4yCNyhf0tn3txylS7KQK8xNGvIoIOOikL3gp9a1VLwdCIU/DhF0iFvUgt/1eg1fWvEUNIt6ishaaVB8nqSNbnBSec6r6DvVB+KqySGuA7B9XLrAyO/Zu9FD8ofKcK0Ugy9CHpFmjXrNXVJxjGU9Reg91ibL+C2WwlxAoGBAJGw3SPiF/AvVGVzzdcx7wTEKNqcH8MK8THFQbNRGF/H7aFgN+HYH0hUSlxSioEDDAc/zkl28fmJuhtF7urRarq/7mXkjRsmSjnBN9eBrfLDZ+beqD9TyLYVtob+yEbLSyyIKYmKjbEOWDmcp9jk2x/e81ylh/03fiNGoxo5Wq7d",
+  "oauth2": {
+    "client_id": "1053861331983-64212d3tpv3m0uku83ffv46loihme1t5.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/gmail.readonly"]
+  },
+  "permissions": ["identity"]
+}
