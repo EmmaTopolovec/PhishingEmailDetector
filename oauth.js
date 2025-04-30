@@ -38,23 +38,39 @@ function decodeEmailBody(encodedData) {
   const decodedStr = atob(base64);
   return decodedStr;
 }
+//const vocabulary = ['urgent', 'money', 'transfer', 'immediate', 'payment', 'no', 'experience', 'needed', 'job', 'salary', 'benefits', 'interview', 'remote', 'weekly', 'stipend'];
 const vocabulary = [
-  "urgent",
-  "money",
-  "transfer",
-  "immediate",
-  "payment",
-  "no",
-  "experience",
-  "needed",
-  "job",
-  "salary",
-  "benefits",
-  "interview",
-  "remote",
-  "weekly",
-  "stipend",
-];
+    "urgent",
+    "money",
+    "immediate",
+    "job",
+    "salary",
+    "interview",
+    "remote",
+    "remotely",
+    "weekly",
+    "stipend",
+    "research",
+    "application",
+    "internship",
+    "financial",
+    "apply",
+    "limited",
+    "soon",
+    "first-come",
+    "pay",
+    "flexible",
+    "sa",
+    "button",
+		  "today",
+		  "research",
+		  "event",
+	  	"bengaged",
+	  	"deadline",
+	  	"unsubscribe"
+		
+    
+				];
 
 function preprocessText(text, vocabulary) {
   const words = text.toLowerCase().split(/\s+/);
@@ -121,11 +137,11 @@ async function predict(model, text) {
   const inputTensor = tf.reshape(preprocessed, [1, vocabulary.length]);
   const prediction = model.predict(inputTensor);
   const result = (await prediction.data())[0];
-  return result > 0.5 ? "Phishing!" : "Legit";
+  return result;
 }
 
 window.onload = async function () {
-  await tf.setBackend("cpu");
+		await tf.setBackend("cpu");
   await tf.ready();
   console.log("We got da backend");
   document.body.innerHTML = `
@@ -170,21 +186,22 @@ window.onload = async function () {
             current.payload.parts[0] &&
             current.payload.parts[0].body
           ) {
-            body = decodeEmailBody(current.payload.parts[0].body.data || "");
+              body = decodeEmailBody(current.payload.parts[0].body.data || "");
           } else if (current.payload.body && current.payload.body.data) {
             body = decodeEmailBody(current.payload.body.data);
           }
           const emailContent = `${snippet} ${body}`;
-          const prediction = await predict(model, emailContent);
+          const predictionVal = await predict(model, emailContent);
+										prediction = (predictionVal > 0.5) ? "Phishing" : "Innocent";
+	    
           const div = document.createElement("div");
-          div.style.border =
-            prediction === "Phishing" ? "2px solid red" : "2px solid green";
+          div.style.border = (prediction === "Phishing") ? "2px solid red" : "2px solid green";
           div.style.padding = "10px";
           div.style.margin = "10px 0";
           div.style.borderRadius = "5px";
 
           const pPrediction = document.createElement("p");
-          pPrediction.innerHTML = `<strong>Prediction: ${prediction}</strong>`;
+          pPrediction.innerHTML = `<strong>Prediction: ${predictionVal}</strong>`;
           pPrediction.style.color = prediction === "Phishing" ? "red" : "green";
           div.appendChild(pPrediction);
 
