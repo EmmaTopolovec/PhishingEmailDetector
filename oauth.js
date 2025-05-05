@@ -139,8 +139,9 @@ async function createLabelsIfNeeded(accessToken) {
   }
 }
 
-async function applyLabelToEmail(accessToken, emailId, labelId) {
+async function applyLabelToEmail(accessToken, emailId, labelIds, labelName) {
   try {
+    labelId = labelIds[labelName]
     if (!labelId) {
       console.warn(
         `Skipping label application for email ${emailId} - no valid label ID provided`
@@ -158,6 +159,7 @@ async function applyLabelToEmail(accessToken, emailId, labelId) {
         },
         body: JSON.stringify({
           addLabelIds: [labelId],
+	  removeLabelIds: Object.entries(labelIds).map(([labelName, labelId]) => (labelId)).filter((id) => id != labelId),    //Remove any other labels that were previously added
         }),
       }
     );
@@ -420,7 +422,8 @@ window.onload = async function () {
               const labelResult = await applyLabelToEmail(
                 token,
                 emailId,
-                labelIds[predictionInfo.labelName]
+                labelIds,
+		predictionInfo.labelName,
               );
 
               labelStatus = labelResult.success
@@ -437,7 +440,7 @@ window.onload = async function () {
               );
               labelStatus = "Label not found";
             }
-
+	    /*
             const div = document.createElement("div");
             div.style.border = `2px solid ${predictionInfo.color}`;
             div.style.padding = "10px";
@@ -482,6 +485,7 @@ window.onload = async function () {
             div.appendChild(pBody);
 
             emailsListDiv.appendChild(div);
+	    */
           }
 
           statusMessage.textContent = `Analysis complete for ${list.length} emails`;
