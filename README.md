@@ -1,4 +1,4 @@
-Project: Phishing email detector for Binghamton students
+#Project: Phishing email detector for Binghamton students
 
 Project Members: Dimitra Pando, Zak Sujkovic, Akhilan Jeyaraj, Caleb Lai
 
