@@ -4,7 +4,9 @@
   "description": "testing out the oauth.",
   "manifest_version": 3,
   "action": {
-    "default_title": "FriendBlock, friends face's in a block."
+    "default_popup":"oauth.js",
+    "default_title": "Phishing Email detector ",
+    "default_icon":"Bing.png"
   },
   "background": {
     "service_worker": "service-worker.js",
