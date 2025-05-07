@@ -1,10 +1,10 @@
 {
-  "name": "OAuth Tutorial FriendBlock",
+  "name": "Phishing Email Detector",
   "version": "1.0",
-  "description": "testing out the oauth.",
+  "description": "Binghamton ACM Project division team 4",
   "manifest_version": 3,
   "action": {
-    "default_popup":"oauth.js",
+    "default_popup":"index.html",
     "default_title": "Phishing Email detector ",
     "default_icon":"Bing.png"
   },
