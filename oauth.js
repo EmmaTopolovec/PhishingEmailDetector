@@ -1,4 +1,4 @@
-async function getEmailListByIds(accessToken) {
+async function getEmailListByIds(accessToken, numEmails) {
   const res = await fetch(
     "https://gmail.googleapis.com/gmail/v1/users/me/messages",
     {
@@ -9,8 +9,8 @@ async function getEmailListByIds(accessToken) {
     }
   );
   const toJson = await res.json();
-  console.log("toJson =", toJson);
-  const pageEmalIds = toJson.messages.slice(0, 5).map((message) => message.id);
+  //console.log("toJson =", toJson);
+  const pageEmalIds = toJson.messages.slice(0, numEmails).map((message) => message.id);
 
   const emails = [];
 
@@ -91,9 +91,7 @@ async function createLabelsIfNeeded(accessToken) {
         );
 
         if (existingLabel) {
-          console.log(
-            `Label ${labelToCreate.name} already exists with ID: ${existingLabel.id}`
-          );
+          //console.log(`Label ${labelToCreate.name} already exists with ID: ${existingLabel.id}`);
           labelIds[labelToCreate.name] = existingLabel.id;
         } else {
           // create
@@ -119,9 +117,7 @@ async function createLabelsIfNeeded(accessToken) {
             continue;
           }
 
-          console.log(
-            `Created new label: ${newLabel.name} with ID: ${newLabel.id}`
-          );
+          //console.log(`Created new label: ${newLabel.name} with ID: ${newLabel.id}`);
           labelIds[labelToCreate.name] = newLabel.id;
         }
       } catch (labelError) {
@@ -271,7 +267,7 @@ async function trainModel() {
       callbacks: tf.callbacks.earlyStopping({ monitor: "loss", patience: 3 }),
     });
 
-    console.log("done w da training");
+    //console.log("done w da training");
     return model;
   } catch (error) {
     console.error("Error training model:", error);
@@ -311,11 +307,19 @@ function getPredictionCategory(score) {
 window.onload = async function () {
   await tf.setBackend("cpu");
   await tf.ready();
-  console.log("We got da backend");
+  //console.log("We got da backend");
   document.body.innerHTML = `
     <div style="text-align: center; font-family: Arial; margin-top: 20px;">
       <h2>Gmail Phishing Detector</h2>
       <div style="margin: 20px 0;">
+        <select id="emailsDropdown">
+          <option value=5>5</option>
+	  <option value=10>10</option>
+	  <option value=15>15</option>
+	  <option value=20>20</option>
+	  <option value=25>25</option>
+	</select>
+    
         <button id="analyzeEmails">Analyze Emails</button>
       </div>
       <div id="statusMessage" style="margin: 10px 0; font-weight: bold;"></div>
@@ -329,9 +333,9 @@ window.onload = async function () {
 
   let labelIds = {};
 
-  console.log("Training model...");
+  //console.log("Training model...");
   const model = await trainModel();
-  console.log("Model training complete");
+  //console.log("Model training complete");
 
   analyzeButton.addEventListener("click", async function () {
     analyzeButton.disabled = true;
@@ -358,12 +362,12 @@ window.onload = async function () {
           return;
         }
 
-        console.log("token =", token);
+        //console.log("token =", token);
 
         try {
           statusMessage.textContent = "Creating Gmail labels...";
           labelIds = await createLabelsIfNeeded(token);
-          console.log("Label IDs created:", labelIds);
+          //console.log("Label IDs created:", labelIds);
 
           if (Object.keys(labelIds).length === 0) {
             statusMessage.textContent = "Failed to create labels.";
@@ -372,8 +376,10 @@ window.onload = async function () {
             analyzeButton.textContent = "Analyze Emails";
             return;
           }
+	  
           statusMessage.textContent = "Loading emails...";
-          const list = await getEmailListByIds(token);
+	  let numEmails = document.getElementById("emailsDropdown").value;
+          const list = await getEmailListByIds(token, numEmails);
 
           if (!list || !list.length) {
             statusMessage.textContent =
@@ -433,7 +439,7 @@ window.onload = async function () {
                     JSON.stringify(labelResult.error)
                   }`;
 
-              console.log(`Label status for ${emailId}:`, labelStatus);
+              //console.log(`Label status for ${emailId}:`, labelStatus);
             } else {
               console.warn(
                 `Label ID for ${predictionInfo.labelName} not found.`
