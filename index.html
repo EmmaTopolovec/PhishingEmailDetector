@@ -1,11 +1,40 @@
 <html>
   <head>
-    <title>GET EMAILS</title>
+    <title>Phishing Email Detector</title>
     <style>
-      button {
+      body {
         padding: 10px;
-        background-color: #3c79f8;
+        background-color: #006747;
+        color: #006747;
+        text-align: center;
+        width: 400px;
+      }
+
+      #main {
+        background-color: white;
+        padding: 20px;
+        padding-right: 50px;
+        padding-left: 50px;
+      }
+
+      button {
+        padding: 5px;
+        background-color: #006747;
         display: inline-block;
+        color: white;
+      }
+
+      h1 {
+        line-height: 0.1;
+      }
+
+      h4 {
+        line-height: 0.1;
+      }
+
+      select {
+        margin: 10px;
+        margin-right: 0px;
       }
     </style>
     <script type="text/javascript" src="base64.js"></script>
@@ -15,7 +44,26 @@
     <script src="oauth.js"></script>
   </head>
   <body>
-    <button>get emails</button>
-    <div id="emailsList"></div>
+    <div id="main">
+      <h2>Phishing Email Detector</h2>
+      <h4>For Binghamton University Students</h4>
+      </br>
+      <div>
+        <label style="color: black;" for="emailsDropdown"># of Emails:</label>
+        <select id="emailsDropdown">
+          <option value=5>5</option>
+          <option value=10>10</option>
+          <option value=15>15</option>
+          <option value=20>20</option>
+          <option value=25>25</option>
+        </select>
+
+        </br>
+    
+        <button id="analyzeEmails">Analyze Emails</button>
+      </div>
+      <div id="statusMessage" style="margin: 10px 0; font-weight: bold; color: white;">.</div>
+      <div id="emailsList" style="margin-top: 20px;"></div>
+    </div>
   </body>
 </html>

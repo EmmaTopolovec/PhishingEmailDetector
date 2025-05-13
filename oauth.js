@@ -309,25 +309,6 @@ function getPredictionCategory(score) {
 window.onload = async function () {
   await tf.setBackend("cpu");
   await tf.ready();
-  //console.log("We got da backend");
-  document.body.innerHTML = `
-    <div style="text-align: center; font-family: Arial; margin-top: 20px;">
-      <h2>Gmail Phishing Detector</h2>
-      <div style="margin: 20px 0;">
-        <select id="emailsDropdown">
-          <option value=5>5</option>
-	  <option value=10>10</option>
-	  <option value=15>15</option>
-	  <option value=20>20</option>
-	  <option value=25>25</option>
-	</select>
-    
-        <button id="analyzeEmails">Analyze Emails</button>
-      </div>
-      <div id="statusMessage" style="margin: 10px 0; font-weight: bold;"></div>
-      <div id="emailsList" style="margin-top: 20px;"></div>
-    </div>
-  `;
 
   const emailsListDiv = document.getElementById("emailsList");
   const analyzeButton = document.getElementById("analyzeEmails");
