@@ -334,7 +334,8 @@ window.onload = async function () {
   let labelIds = {};
 
   //console.log("Training model...");
-  const model = await trainModel();
+  // const model = await trainModel();
+  const model = await tf.loadLayersModel('./my-model.json')
   //console.log("Model training complete");
 
   analyzeButton.addEventListener("click", async function () {
