@@ -1,12 +1,12 @@
 {
   "name": "Phishing Email Detector",
   "version": "1.0",
-  "description": "Binghamton ACM Project division team 4",
+  "description": "Scans Binghamton University student email inboxes for phishing emails. Created by Akhilan Jeyaraj, Caleb Lai, Dimitra Pando, Zak Sujkovic, and Emma Topolovec",
   "manifest_version": 3,
   "action": {
-    "default_popup":"index.html",
-    "default_title": "Phishing Email detector ",
-    "default_icon":"Bing.png"
+    "default_popup": "index.html",
+    "default_title": "Phishing Email Detector",
+    "default_icon": "icons/icon128.png"
   },
   "background": {
     "service_worker": "service-worker.js",
@@ -20,5 +20,11 @@
       "https://www.googleapis.com/auth/gmail.labels"
     ]
   },
-  "permissions": ["identity"]
+  "permissions": ["identity"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
 }
