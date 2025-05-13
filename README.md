@@ -27,10 +27,15 @@ Many Binghamton University students receive fraudulent phishing emails. To help 
  4. Allow the extension to access your emails
  5. View the results at [mail.google.com](http://mail.google.com/)
 
+---
 
 <img src="https://github.com/EmmaTopolovec/PhishingEmailDetector/blob/9c74473cf56510691fd78ebc37ce2a8b3a98c59a/images/PopupScreenshot.png" width="50%" height="50%" />
 
-<img src="https://github.com/EmmaTopolovec/PhishingEmailDetector/blob/9c74473cf56510691fd78ebc37ce2a8b3a98c59a/images/ResultsScreenshot.png" width="50%" height="50%" />
+---
+
+<img src="https://github.com/EmmaTopolovec/PhishingEmailDetector/blob/9c74473cf56510691fd78ebc37ce2a8b3a98c59a/images/ResultsScreenshot.png" width="80%" height="80%" />
+
+---
 
 ### Implementation
 
