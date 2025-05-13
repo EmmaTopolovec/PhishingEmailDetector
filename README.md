@@ -1,7 +1,42 @@
-Project: Phishing email detector for Binghamton students
+# Phishing Email Detector for Binghamton University Students  
 
-Project Members: Dimitra Pando, Zak Sujkovic, Akhilan Jeyaraj, Caleb Lai
+### Created by Akhilan Jeyaraj, Caleb Lai, Dimitra Pando, and Zak Sujkovic
+### Supported by Emma Topolovec and the [Binghamton University ACM Student Chapter Executive Board](https://binghamtonacm.org/)
 
-Many Binghamton University students receive fradulent phishing emails. To help these students, we have developed a Chrome extension capable of detecting phishing emails by using a machine learning model and a keywork detection system.
+---
 
-The extension's user interface is simple and relies on a button to start scanning. When a user has an email opened, they can press a button that will begin scanning their email. Another feature that this extension includes is a drop down menu where users can select how many emails to scan. At the bottom of the extension, a message displays whether the email can be considered phishing or not. The machine learning part of the project collects emails to use as a dataset which is crucial for training the model. The machine learning model looks for any suspicious links within the email, wheter the sender of the email has a Binghamton Univeristy associated email, and looks for key words that are used in phishing emails. These features are important for the machine learning model to select because they are key indicators whether an email can be considered phishing or not.
+### Introduction
+
+Many Binghamton University students receive fraudulent phishing emails. To help these students, we developed a Chrome extension capable of detecting phishing emails with machine learning. The extension accesses the Gmail API to scan a user's emails and label them as malicious or benign. Emails are classified with a neural network made using TensorFlow.js.
+
+### Usage
+
+#### Download and Load the Extension:
+ 1. Download the repository as a ZIP
+ 2. Unzip the repository
+ 3. Open Google Chrome and visit [chrome://extensions](chrome://extensions)
+ 4. Turn on Developer Mode
+ 5. Click "Load unpacked"
+ 6. Select the unzipped repository
+
+#### Using the Extension:
+
+ 1. Open the extension
+ 2. Select the number of emails to scan
+ 3. Click "Analyze Emails"
+ 4. Allow the extension to access your emails
+ 5. View the results at [mail.google.com](http://mail.google.com/)
+
+### Implementation
+
+The extension consists of two major components: the extension popup and the trained neural network.
+
+#### Popup
+
+The popup was created using JavaScript, HTML, and CSS. It contains a title, dropdown box, and button. The dropdown box allows user to select the number of recent emails to scan. The button starts the scan. JavaScript code activates upon a button press and reads the value from the dropdown box. The script sends a request to the Gmail API to read the selected emails. TensorFlow.js is used to parse each email into features that are used by a pre-trained neural network to classify the emails as phishing or benign. The results are used to send requests to the Gmail API to add custom "Phishing" or "Safe" labels to each email.
+
+#### Neural Network
+
+The neural network trained on around 100 sample emails from Binghamton University students. This dataset was preprocessed and cleaned into a JSON file where each entry contained the email subject, email body, and a label. From this file, several binary features were extracted. Each feature represents if an email contains a certain suspicious word. The features were used to train a neural network with 3 dense layers. The trained model is included in the extension.
+
+When a user scans new emails, our code extracts the features from the emails, loads the pre-trained model, then uses the model to classify each email. Emails with a prediction score of 90% phishing are classified as phishing, while all others are classified as safe.
