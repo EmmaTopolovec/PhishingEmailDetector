@@ -289,13 +289,15 @@ function getPredictionCategory(score) {
       labelName: "Phishing!",
       color: "#DB4437",
     };
-  } else if (score > 0.7) {
-    return {
-      category: "Suspicious",
-      labelName: "SUS!",
-      color: "#F4B400",
-    };
-  } else {
+  }
+  // else if (score > 0.7) {
+  //   return {
+  //     category: "Suspicious",
+  //     labelName: "SUS!",
+  //     color: "#F4B400",
+  //   };
+  // }
+  else {
     return {
       category: "Safe",
       labelName: "Safe!",
